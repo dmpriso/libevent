@@ -826,7 +826,9 @@ if (EVENT__HAVE_OPENSSL)
 endif()
 
 if (NOT EVENT__DISABLE_THREAD_SUPPORT)
-    target_link_libraries(event_core PUBLIC Threads::Threads)
+	if(NOT WIN32)
+    	target_link_libraries(event_core PUBLIC Threads::Threads)
+	endif()
 endif()
 
 add_library(event_extra ${EVENT__LIBRARY_TYPE} ${SRC_EXTRA})
